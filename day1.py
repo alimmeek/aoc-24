@@ -16,8 +16,21 @@ def calculate_distance(left, right):
 
     return distance
 
+def calculate_similarity(left, right):
+    counted = {}
+    score = 0
+
+    for el in left:
+        if el not in counted.keys():
+            counted[el] = right.count(el)
+        
+        score += el * counted[el]
+    
+    return score
+
+
 if __name__ == "__main__":
     left, right = process_file("day1.txt")
 
-    print(calculate_distance(left, right))
-    
+    print("Part 1: " + str(calculate_distance(left, right)))
+    print("Part 2: " + str(calculate_similarity(left, right)))
